@@ -1,6 +1,6 @@
-﻿using Common;
+﻿using Customer_Store_Sku.Interfaces;
 
-namespace Engine;
+namespace Customer_Store_Sku.Implementations;
 
 public class List_Parameters_Library : IParameters_Library
 {

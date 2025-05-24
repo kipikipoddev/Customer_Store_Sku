@@ -1,7 +1,7 @@
-﻿using Common;
-using Engine;
+﻿using Customer_Store_Sku.Implementations;
+using Customer_Store_Sku.Interfaces;
 
-namespace TestProject.Tests;
+namespace Customer_Store_Sku.Tests;
 
 public class Parameters_Library_Tests
 {
@@ -92,6 +92,7 @@ public class Parameters_Library_Tests
         Assert_Value();
         Assert_Value(store: Store_2, value: Value_3);
         Assert_Value(sku: Sku_2, value: Value_4);
+        Assert_Value(store: Store_2, sku: Sku_2, value: Value_4);
     }
 
     [Test]

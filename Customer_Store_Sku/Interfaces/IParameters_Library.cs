@@ -1,4 +1,4 @@
-﻿namespace Common;
+﻿namespace Customer_Store_Sku.Interfaces;
 
 public interface IParameters_Library
 {

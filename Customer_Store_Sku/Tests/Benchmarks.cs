@@ -1,4 +1,6 @@
-﻿using Common;
+﻿using Customer_Store_Sku.Interfaces;
+
+namespace Customer_Store_Sku.Tests;
 
 public static class Benchmarks
 {
