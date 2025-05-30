@@ -1,6 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 using Customer_Store_Sku.Implementations;
-using Customer_Store_Sku.Tests;
+using TestProject.Base;
 
 [MemoryDiagnoser]
 public class Customer_Store_Sku_Benchmarks

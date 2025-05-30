@@ -1,6 +1,6 @@
 ﻿using Customer_Store_Sku.Interfaces;
 
-namespace Customer_Store_Sku.Tests;
+namespace TestProject.Base;
 
 public static class Benchmarks
 {

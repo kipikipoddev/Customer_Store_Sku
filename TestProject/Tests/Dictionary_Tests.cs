@@ -1,4 +1,5 @@
 ﻿using Customer_Store_Sku.Implementations;
+using TestProject.Base;
 
 namespace Customer_Store_Sku.Tests;
 

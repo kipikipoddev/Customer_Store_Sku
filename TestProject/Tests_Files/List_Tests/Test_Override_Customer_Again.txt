@@ -1,0 +1,16 @@
+Parameter_A Customer_1 Store_1 Sku_1 Value_3
+Parameter_A Customer_1 Store_1 Sku_2 Value_3
+Parameter_A Customer_1 Store_2 Sku_1 Value_3
+Parameter_A Customer_1 Store_2 Sku_2 Value_3
+Parameter_A Customer_2 Store_1 Sku_1 Value_3
+Parameter_A Customer_2 Store_1 Sku_2 Value_3
+Parameter_A Customer_2 Store_2 Sku_1 Value_3
+Parameter_A Customer_2 Store_2 Sku_2 Value_3
+Parameter_B Customer_1 Store_1 Sku_1 Value_2
+Parameter_B Customer_1 Store_1 Sku_2 Value_2
+Parameter_B Customer_1 Store_2 Sku_1 Value_2
+Parameter_B Customer_1 Store_2 Sku_2 Value_2
+Parameter_B Customer_2 Store_1 Sku_1 Value_2
+Parameter_B Customer_2 Store_1 Sku_2 Value_2
+Parameter_B Customer_2 Store_2 Sku_1 Value_2
+Parameter_B Customer_2 Store_2 Sku_2 Value_2
