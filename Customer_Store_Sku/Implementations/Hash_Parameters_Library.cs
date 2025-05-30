@@ -9,7 +9,7 @@ public class Hash_Parameters_Library : IParameters_Library
 
     public void Set_Parameter(string key, object value)
     {
-        parameter_to_data[key] = new Parameter_Data(value, [], [], []);
+        parameter_to_data[key] = new Parameter_Data(value, [], [], [], []);
     }
 
     public void Set_Customer_Parameter(string key, object value, string customer)
@@ -27,10 +27,17 @@ public class Hash_Parameters_Library : IParameters_Library
         parameter_to_data[key].Skus[(customer, sku)] = value;
     }
 
+    public void Set_Store_Sku_Parameter(string key, object value, string customer, string store, string sku)
+    {
+        parameter_to_data[key].Stores_Skus[(customer, store, sku)] = value;
+    }
+
     public object Get_Parameter(string key, string customer, string store, string sku)
     {
         var data = parameter_to_data[key];
-        if (data.Skus.TryGetValue((customer, sku), out var value))
+        if (data.Stores_Skus.TryGetValue((customer, store, sku), out var value))
+            return value;
+        if (data.Skus.TryGetValue((customer, sku), out value))
             return value;
         if (data.Stores.TryGetValue((customer, store), out value))
             return value;
@@ -43,5 +50,6 @@ public class Hash_Parameters_Library : IParameters_Library
             object Value,
             Dictionary<string, object> Customers,
             Dictionary<(string, string), object> Stores,
-            Dictionary<(string, string), object> Skus);
+            Dictionary<(string, string), object> Skus,
+            Dictionary<(string, string, string), object> Stores_Skus);
 }

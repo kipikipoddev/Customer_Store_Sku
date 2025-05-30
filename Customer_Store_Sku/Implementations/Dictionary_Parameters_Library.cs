@@ -27,11 +27,19 @@ public class Dictionary_Parameters_Library : IParameters_Library
         parameter_to_data[key][new Data(customer, null, sku)] = value;
     }
 
+    public void Set_Store_Sku_Parameter(string key, object value, string customer, string store, string sku)
+    {
+        parameter_to_data[key][new Data(customer, store, sku)] = value;
+    }
+
     public object Get_Parameter(string key, string customer, string store, string sku)
     {
         var data_dic = parameter_to_data[key];
-        var data = new Data(customer, null, sku);
-        if (data_dic.TryGetValue(data, out var value)) //customer sku
+        var data = new Data(customer, store, sku);
+        if (data_dic.TryGetValue(data, out var value)) //customer store sku
+            return value;
+        data.Store = null;
+        if (data_dic.TryGetValue(data, out  value)) //customer sku
             return value;
         data.Sku = null;
         data.Store = store;

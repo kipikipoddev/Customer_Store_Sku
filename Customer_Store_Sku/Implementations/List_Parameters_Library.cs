@@ -23,7 +23,12 @@ public class List_Parameters_Library : IParameters_Library
 
     public void Set_Sku_Parameter(string key, object value, string customer, string sku)
     {
-        parameter_to_data[key].Add(new Data(value, customer, Sku: sku));
+        parameter_to_data[key].Add(new Data(value, customer, null, sku));
+    }
+
+    public void Set_Store_Sku_Parameter(string key, object value, string customer, string store, string sku)
+    {
+        parameter_to_data[key].Add(new Data(value, customer, store, sku));
     }
 
     public object Get_Parameter(string key, string customer, string store, string sku)
@@ -37,11 +42,19 @@ public class List_Parameters_Library : IParameters_Library
             {
                 if (data.Store == store)
                 {
-                    value = data.Value;
-                    level = Level.Store;
+                    if (data.Sku == sku)
+                        return data.Value;
+                    else if (data.Sku == null && level < Level.Sku)
+                    {
+                        value = data.Value;
+                        level = Level.Store;
+                    }
                 }
-                else if (data.Sku == sku)
-                    return data.Value;
+                else if (data.Sku == sku && data.Store == null)
+                {
+                    level = Level.Sku;
+                    value = data.Value;
+                }
                 else if (level < Level.Store && data.Store == null && data.Sku == null)
                 {
                     value = data.Value;
@@ -58,7 +71,8 @@ public class List_Parameters_Library : IParameters_Library
     {
         None,
         Customer,
-        Store
+        Store,
+        Sku
     }
 
     private record Data(object Value, string? Customer = null, string? Store = null, string? Sku = null);

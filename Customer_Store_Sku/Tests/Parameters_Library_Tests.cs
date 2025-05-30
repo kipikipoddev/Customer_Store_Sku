@@ -1,9 +1,9 @@
-﻿using Customer_Store_Sku.Implementations;
-using Customer_Store_Sku.Interfaces;
+﻿using Customer_Store_Sku.Interfaces;
 
 namespace Customer_Store_Sku.Tests;
 
-public class Parameters_Library_Tests
+public abstract class Parameters_Library_Tests<T>
+    where T: IParameters_Library
 {
     private IParameters_Library library;
 
@@ -23,11 +23,12 @@ public class Parameters_Library_Tests
     private const string Value_2 = "Value_2";
     private const string Value_3 = "Value_3";
     private const string Value_4 = "Value_4";
+    private const string Value_5 = "Value_5";
 
     [SetUp]
     public void Setup()
     {
-        library = new Hash_Parameters_Library();
+        library = Activator.CreateInstance<T>();
         library.Set_Parameter(Parameter_A, Value_1);
         library.Set_Parameter(Parameter_B, Value_2);
     }
@@ -88,11 +89,12 @@ public class Parameters_Library_Tests
         library.Set_Customer_Parameter(Parameter_A, Value_2, Customer_1);
         library.Set_Store_Parameter(Parameter_A, Value_3, Customer_1, Store_2);
         library.Set_Sku_Parameter(Parameter_A, Value_4, Customer_1, Sku_2);
+        library.Set_Store_Sku_Parameter(Parameter_A, Value_5, Customer_1, Store_2, Sku_2);
 
         Assert_Value();
         Assert_Value(store: Store_2, value: Value_3);
         Assert_Value(sku: Sku_2, value: Value_4);
-        Assert_Value(store: Store_2, sku: Sku_2, value: Value_4);
+        Assert_Value(store: Store_2, sku: Sku_2, value: Value_5);
     }
 
     [Test]
@@ -108,7 +110,7 @@ public class Parameters_Library_Tests
     [Test]
     public void Benchmark()
     {
-        Benchmarks.Run(library, 50);
+        Benchmarks.Run(library, 10);
     }
 
     private void Assert_Value(

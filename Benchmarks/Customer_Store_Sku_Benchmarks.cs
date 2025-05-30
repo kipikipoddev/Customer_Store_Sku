@@ -22,6 +22,20 @@ public class Customer_Store_Sku_Benchmarks
     }
 
     [Benchmark]
+    public void Dictionary_Benchmarks_Five()
+    {
+        var bench = new Dictionary_Parameters_Library();
+        Benchmarks.Run(bench, Scale * 5);
+    }
+
+    [Benchmark]
+    public void Hash_Benchmarks_Five()
+    {
+        var bench = new Hash_Parameters_Library();
+        Benchmarks.Run(bench, Scale * 5);
+    }
+
+    [Benchmark]
     public void Linq_Benchmarks()
     {
         var bench = new Linq_Parameters_Library();

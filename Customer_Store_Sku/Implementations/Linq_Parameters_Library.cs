@@ -30,6 +30,12 @@ public class Linq_Parameters_Library : IParameters_Library
         data.Add(new Data(key, value, customer, null, sku));
     }
 
+    public void Set_Store_Sku_Parameter(string key, object value, string customer, string store, string sku)
+    {
+        Remove(key, customer, store, sku);
+        data.Add(new Data(key, value, customer, store, sku));
+    }
+
     public object Get_Parameter(string key, string customer, string store, string sku)
     {
         return data.Where(d => d.Key == key)
@@ -40,8 +46,8 @@ public class Linq_Parameters_Library : IParameters_Library
     private int Order_Func(Data data, string customer, string store, string sku)
     {
         return data.Customer == customer ?
-            data.Sku == sku ? 1 :
-            data.Store == store ? 2 : 3 : 4;
+            data.Sku == sku ? data.Store == store ? 1 : 2 :
+            data.Store == store ? 3 : 4 : 5;
     }
 
     private void Remove(string key, string? customer = null, string? store = null, string? sku = null)
